@@ -18,7 +18,7 @@ app.use(cors());
 app.use(express.json());
 
 
-mongoose.connect('mongodb://127.0.0.1:27017/linkTree-9').then(()=>{console.log(`mongodb COnnected`)}).catch(err=>{console.log(err.message)});
+mongoose.connect(process.env.MONGO_URI).then(()=>{console.log(`mongodb COnnected`)}).catch(err=>{console.log(err.message)});
 
 app.get('/', (req, res)=>{
     res.send(`Server is running on port ${port}`);
@@ -37,8 +37,7 @@ app.post('/save/links', saveLinks)
 app.post('/load/socials', loadSocials)
 app.post('/load/links', loadLinks)
 
-const port = process.env.PORT || 8080;
 
 app.listen(port, ()=>{
-    console.log(`Server is running on port ${port}`);
+    console.log(`Server is running `);
 })
